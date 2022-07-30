@@ -1,13 +1,7 @@
-import {
-  Column,
-  CreateDateColumn,
-  Entity,
-  ManyToMany,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
-
+import { Genre } from '../../genres/entities/Genre';
 import { User } from '../../users/entities/User';
+
+import { Column, CreateDateColumn, Entity, ManyToMany, PrimaryGeneratedColumn, UpdateDateColumn, } from 'typeorm';
 
 @Entity('games')
 export class Game {
@@ -19,6 +13,9 @@ export class Game {
 
   @ManyToMany(() => User, (user) => user.games)
   users: User[];
+
+  @ManyToMany(() => Genre, (genre) => genre.games)
+  genres: Genre[];
 
   @CreateDateColumn()
   created_at: Date;
